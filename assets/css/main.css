@@ -700,12 +700,55 @@ section,
 /*--------------------------------------------------------------
 # Resume Section
 --------------------------------------------------------------*/
+.resume {
+  max-width: 800px; 
+  margin: 0 auto;     /* Centers the entire resume block */
+  padding: 0 20px;
+}
 .resume .resume-title {
-  color: var(--heading-color);
-  font-size: 26px;
+  /* Center the text */
+  text-align: center;
+  /* Ensure positioning for the pseudo-elements */
+  position: relative;  
+  /* Control your font size, weight, and spacing */
+  font-size: 32px;
   font-weight: 700;
-  margin-top: 20px;
   margin-bottom: 20px;
+  padding-bottom: 20px;
+  color: var(--heading-color);
+}
+
+/* Draw a thin, grayish line under the heading */
+.resume .resume-title::before {
+  content: "";
+  position: absolute;
+  display: block;
+  /* Length of the thin line */
+  width: 160px;
+  height: 1px;
+  /* Feel free to use a direct color like #ccc instead of color-mix */
+  background: color-mix(in srgb, var(--default-color), transparent 60%);
+  left: 0;
+  right: 0;      /* Center horizontally */
+  bottom: 1px;   /* Place just above the thicker accent bar */
+  margin: auto;
+}
+
+/* Draw the thicker accent bar centered under the heading */
+.resume .resume-title::after {
+  content: "";
+  position: absolute;
+  display: block;
+  /* Length of the thicker accent line */
+  width: 60px;
+  height: 3px;
+  background: var(--accent-color);
+  left: 0;
+  right: 0;      /* Center horizontally */
+  bottom: 0;
+  margin: auto;
+}
+
 }
 
 .resume .resume-item {
