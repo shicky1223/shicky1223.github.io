@@ -8,7 +8,6 @@
 
 /*--------------------------------------------------------------
 # Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
@@ -17,28 +16,27 @@
   --nav-font: "Poppins",  sans-serif;
 }
 
-/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+/* Global Colors */
 :root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #45505b; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #0563bb; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --background-color: #ffffff;
+  --default-color: #272829;
+  --heading-color: #45505b;
+  --accent-color: #0563bb;
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
 }
 
-/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+/* Nav Menu Colors */
 :root {
-  --nav-color: #45505b;  /* The default color of the main navmenu links */
-  --nav-hover-color: #0563bb; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #212529; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #0563bb; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #45505b;
+  --nav-hover-color: #0563bb;
+  --nav-mobile-background-color: #ffffff;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #212529;
+  --nav-dropdown-hover-color: #0563bb;
 }
 
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
-
+/* Color Presets */
 .light-background {
   --background-color: #f9f9f9;
   --surface-color: #ffffff;
@@ -87,8 +85,7 @@ h6 {
   font-family: var(--heading-font);
 }
 
-/* PHP Email Form Messages
-------------------------------*/
+/* PHP Email Form Messages */
 .php-email-form .error-message {
   display: none;
   background: #df1529;
@@ -133,7 +130,6 @@ h6 {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
   }
@@ -168,7 +164,6 @@ h6 {
   .header~main {
     margin-left: 160px;
   }
-
   .header~main .hero {
     margin-left: -160px;
     width: 100vw;
@@ -245,12 +240,10 @@ h6 {
 }
 
 @media (min-width: 992px) {
-
   .navmenu a,
   .navmenu a:focus {
     max-width: 56px;
   }
-
   .navmenu a span,
   .navmenu a:focus span {
     display: none;
@@ -297,7 +290,7 @@ h6 {
 }
 
 .footer p {
-  font-size: 15;
+  font-size: 15px;
   font-style: italic;
   padding: 0;
   margin: 0 0 30px 0;
@@ -367,7 +360,6 @@ h6 {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
   }
@@ -585,7 +577,6 @@ section,
   .hero h2 {
     font-size: 32px;
   }
-
   .hero p {
     font-size: 20px;
   }
@@ -702,15 +693,13 @@ section,
 --------------------------------------------------------------*/
 .resume {
   max-width: 800px; 
-  margin: 0 auto;     /* Centers the entire resume block */
+  margin: 0 auto;
   padding: 0 20px;
 }
+
 .resume .resume-title {
-  /* Center the text */
   text-align: center;
-  /* Ensure positioning for the pseudo-elements */
-  position: relative;  
-  /* Control your font size, weight, and spacing */
+  position: relative;
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -718,37 +707,30 @@ section,
   color: var(--heading-color);
 }
 
-/* Draw a thin, grayish line under the heading */
 .resume .resume-title::before {
   content: "";
   position: absolute;
   display: block;
-  /* Length of the thin line */
   width: 160px;
   height: 1px;
-  /* Feel free to use a direct color like #ccc instead of color-mix */
   background: color-mix(in srgb, var(--default-color), transparent 60%);
   left: 0;
-  right: 0;      /* Center horizontally */
-  bottom: 1px;   /* Place just above the thicker accent bar */
+  right: 0;
+  bottom: 1px;
   margin: auto;
 }
 
-/* Draw the thicker accent bar centered under the heading */
 .resume .resume-title::after {
   content: "";
   position: absolute;
   display: block;
-  /* Length of the thicker accent line */
   width: 60px;
   height: 3px;
   background: var(--accent-color);
   left: 0;
-  right: 0;      /* Center horizontally */
+  right: 0;
   bottom: 0;
   margin: auto;
-}
-
 }
 
 .resume .resume-item {
@@ -1227,7 +1209,6 @@ section,
 }
 
 @media (max-width: 575px) {
-
   .portfolio-details .swiper-button-prev,
   .portfolio-details .swiper-button-next {
     display: none;
@@ -1361,7 +1342,7 @@ section,
 
 .portfolio-details .portfolio-description .testimonial-item p {
   font-style: italic;
-  margin: 0 0 15px 0 0 0;
+  margin: 0 0 15px 0;
   padding: 0;
 }
 
@@ -1499,4 +1480,43 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+/*--------------------------------------------------------------
+# Custom Styles for PDF Embed
+--------------------------------------------------------------*/
+.pdf-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pdf-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.pdf {
+  width: 100%;
+  height: 800px;
+  border: none;
+}
+
+.btn-download {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  text-decoration: none;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-download:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 25%);
 }
