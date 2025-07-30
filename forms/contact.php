@@ -1,47 +1,72 @@
 <?php
-/**
- * Requires the "PHP Email Form" library
- * The "PHP Email Form" library is available only in the pro version of the template.
- * The library should be uploaded to: vendor/php-email-form/php-email-form.php
- * For more info and help: https://bootstrapmade.com/php-email-form/
- */
+// Simple PHP Contact Form
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type');
 
-// Replace contact@example.com with your real receiving email address
-$receiving_email_address = 'shatkratuswarnkar22@gmail.com';
-
-// Check if the PHP Email Form library exists and include it
-if (file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php')) {
-    include $php_email_form;
-} else {
-    die('Unable to load the "PHP Email Form" Library!');
+// Check if it's a POST request
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['status' => 'error', 'message' => 'Method not allowed']);
+    exit;
 }
 
-// Create a new instance of the PHP_Email_Form class
-$contact = new PHP_Email_Form;
-$contact->ajax = true;
+// Get form data
+$name = $_POST['name'] ?? '';
+$email = $_POST['email'] ?? '';
+$subject = $_POST['subject'] ?? '';
+$message = $_POST['message'] ?? '';
 
-// Set email details
-$contact->to         = $receiving_email_address;
-$contact->from_name  = $_POST['name']   ?? '';
-$contact->from_email = $_POST['email']  ?? '';
-$contact->subject    = $_POST['subject'] ?? '';
+// Validate required fields
+if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+    echo json_encode(['status' => 'error', 'message' => 'Please fill in all required fields']);
+    exit;
+}
 
-// Uncomment the code below if you want to use SMTP to send emails.
-// Make sure to enter your correct SMTP credentials.
-/*
-$contact->smtp = array(
-    'host'     => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port'     => '587'
+// Validate email
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo json_encode(['status' => 'error', 'message' => 'Please enter a valid email address']);
+    exit;
+}
+
+// Set recipient email (your email)
+$to = 'shatkratuswarnkar22@gmail.com';
+
+// Create email headers
+$headers = array(
+    'From: ' . $email,
+    'Reply-To: ' . $email,
+    'X-Mailer: PHP/' . phpversion(),
+    'Content-Type: text/html; charset=UTF-8'
 );
-*/
 
-// Add message fields
-$contact->add_message($_POST['name']    ?? '', 'From');
-$contact->add_message($_POST['email']   ?? '', 'Email');
-$contact->add_message($_POST['message'] ?? '', 'Message', 10);
+// Create email subject
+$email_subject = "Portfolio Contact: " . $subject;
 
-// Send the email and echo the result
-echo $contact->send();
+// Create email body
+$email_body = "
+<html>
+<head>
+    <title>Portfolio Contact Form</title>
+</head>
+<body>
+    <h2>New Contact Form Submission</h2>
+    <p><strong>Name:</strong> " . htmlspecialchars($name) . "</p>
+    <p><strong>Email:</strong> " . htmlspecialchars($email) . "</p>
+    <p><strong>Subject:</strong> " . htmlspecialchars($subject) . "</p>
+    <p><strong>Message:</strong></p>
+    <p>" . nl2br(htmlspecialchars($message)) . "</p>
+    <hr>
+    <p><small>This message was sent from your portfolio contact form.</small></p>
+</body>
+</html>
+";
+
+// Try to send the email
+if (mail($to, $email_subject, $email_body, implode("\r\n", $headers))) {
+    echo json_encode(['status' => 'success', 'message' => 'Your message has been sent successfully!']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Sorry, there was an error sending your message. Please try again later.']);
+}
 ?>
